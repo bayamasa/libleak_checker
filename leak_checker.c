@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 17:09:41 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/16 17:21:02 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	leak_checker_finish_check(int n)
 	exit(n);
 }
 
+/* 開放が行われていないメモリの情報を表示する関数 */
 void	leak_checker_check(const char *file, unsigned int line, const char *func)
 {
 	size_t	i;
