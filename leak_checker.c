@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 17:21:02 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/16 20:34:20 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	leak_checker_finish_check(int n)
 {
 	size_t	i;
 
-	printf("\x1b[33m========メモリリークを検出!!!!========\x1b[39m\n");
+	printf("\x1b[31m========メモリリークを検出!!!!========\x1b[39m\n");
 	i = 0;
 	while (i < MAX_NUM)
 	{
@@ -94,7 +94,7 @@ void	leak_checker_finish_check(int n)
 			printf(" アドレス : %p\n", g_mem_info[i].ptr);
 			printf(" サイズ   : %zuバイト\n", g_mem_info[i].size);
 			printf(" 場所     : %s:%u行目:%s関数\n", g_mem_info[i].file, g_mem_info[i].line, g_mem_info[i].func);
-			printf("\x1b[33m======================================\x1b[39m\n");
+			printf("\x1b[31m======================================\x1b[39m\n");
 		}
 		i++;
 	}
