@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 15:36:30 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/16 16:18:26 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ void	leak_checker_init(void)
 		g_mem_info[i].size = 0;
 		g_mem_info[i].file = NULL;
 		g_mem_info[i].line = 0;
+		g_mem_info[i].func = NULL;
 		i++;
 	}
 }
 
 /* メモリ確保とそのメモリの情報を記録する関数 */
-void	*leak_checker_malloc(size_t size, const char *file, unsigned int line)
+void	*leak_checker_malloc(size_t size, const char *file, unsigned int line, const char *func)
 {
 	size_t	i;
 	void	*ptr;
@@ -49,6 +50,7 @@ void	*leak_checker_malloc(size_t size, const char *file, unsigned int line)
 			g_mem_info[i].size = size;
 			g_mem_info[i].file = file;
 			g_mem_info[i].line = line;
+			g_mem_info[i].func = func;
 			break ;
 		}
 		i++;
@@ -70,6 +72,7 @@ void	leak_checker_free(void *ptr)
 			g_mem_info[i].size = 0;
 			g_mem_info[i].file = NULL;
 			g_mem_info[i].line = 0;
+			g_mem_info[i].func = NULL;
 			break ;
 		}
 		i++;
@@ -87,11 +90,11 @@ void	leak_checker_check(int n)
 	{
 		if (g_mem_info[i].ptr != NULL)
 		{
-			printf("\x1b[33m==メモリリークを検出!!!!!==\x1b[39m\n");
-			printf(" アドレス:%p\n", g_mem_info[i].ptr);
-			printf(" サイズ:%zu\n", g_mem_info[i].size);
-			printf(" 場所:%s:%u\n", g_mem_info[i].file, g_mem_info[i].line);
-			printf("\x1b[33m===========================\x1b[39m\n");
+			printf("\x1b[33m======メモリリークを検出!!!!!======\x1b[39m\n");
+			printf(" アドレス : %p\n", g_mem_info[i].ptr);
+			printf(" サイズ   : %zuバイト\n", g_mem_info[i].size);
+			printf(" 場所     : %s:%u行目:%s関数\n", g_mem_info[i].file, g_mem_info[i].line, g_mem_info[i].func);
+			printf("\x1b[33m===================================\x1b[39m\n");
 		}
 		i++;
 	}
