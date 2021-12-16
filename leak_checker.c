@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 16:18:26 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/16 17:09:41 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,22 +81,41 @@ void	leak_checker_free(void *ptr)
 }
 
 /* 解放が行われていないメモリの情報を表示し、プログラムを終了する関数 */
-void	leak_checker_check(int n)
+void	leak_checker_finish_check(int n)
 {
 	size_t	i;
 
+	printf("\x1b[33m========メモリリークを検出!!!!========\x1b[39m\n");
 	i = 0;
 	while (i < MAX_NUM)
 	{
 		if (g_mem_info[i].ptr != NULL)
 		{
-			printf("\x1b[33m======メモリリークを検出!!!!!======\x1b[39m\n");
 			printf(" アドレス : %p\n", g_mem_info[i].ptr);
 			printf(" サイズ   : %zuバイト\n", g_mem_info[i].size);
 			printf(" 場所     : %s:%u行目:%s関数\n", g_mem_info[i].file, g_mem_info[i].line, g_mem_info[i].func);
-			printf("\x1b[33m===================================\x1b[39m\n");
+			printf("\x1b[33m======================================\x1b[39m\n");
 		}
 		i++;
 	}
 	exit(n);
+}
+
+void	leak_checker_check(const char *file, unsigned int line, const char *func)
+{
+	size_t	i;
+
+	printf("\x1b[33m==%s:%u行目:%s関数のヒープ領域==\x1b[39m\n", file, line, func);
+	i = 0;
+	while (i < MAX_NUM)
+	{
+		if (g_mem_info[i].ptr != NULL)
+		{
+			printf(" アドレス : %p\n", g_mem_info[i].ptr);
+			printf(" サイズ   : %zuバイト\n", g_mem_info[i].size);
+			printf(" 場所     : %s:%u行目:%s関数\n", g_mem_info[i].file, g_mem_info[i].line, g_mem_info[i].func);
+			printf("\x1b[33m======================================\x1b[39m\n");
+		}
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:57:20 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 15:58:04 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/16 16:46:04 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define malloc(s) leak_checker_malloc(s, __FILE__, __LINE__, __FUNCTION__)
 # define free leak_checker_free
-# define exit(n) leak_checker_check(n)
+# define exit(n) leak_checker_finish_check(n)
+# define leak_checker_check() leak_checker_check(__FILE__, __LINE__, __FUNCTION__)
 
 #endif
