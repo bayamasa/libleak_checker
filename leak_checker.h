@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:02 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 12:33:18 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/16 15:38:17 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct s_mem
 }	t_mem;
 
 /* 関数のプロトタイプ宣言 */
-void	leak_detect_init(void);
-void	*leak_detelc_malloc(size_t size, const char *file, unsigned int line);
-void	leak_detect_free(void *ptr);
-void	leak_detect_check(int n);
+void	leak_checker_init(void);
+void	*leak_checker_malloc(size_t size, const char *file, unsigned int line);
+void	leak_checker_free(void *ptr);
+void	leak_checker_check(int n);
 
 #endif

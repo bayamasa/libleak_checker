@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 12:49:57 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/16 15:36:30 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 t_mem	g_mem_info[MAX_NUM];
 
 /* メモリ管理配列を初期化する関数 */
-void	leak_detect_init(void)
+void	leak_checker_init(void)
 {
 	size_t	i;
 
@@ -32,7 +32,7 @@ void	leak_detect_init(void)
 }
 
 /* メモリ確保とそのメモリの情報を記録する関数 */
-void	*leak_detelc_malloc(size_t size, const char *file, unsigned int line)
+void	*leak_checker_malloc(size_t size, const char *file, unsigned int line)
 {
 	size_t	i;
 	void	*ptr;
@@ -57,7 +57,7 @@ void	*leak_detelc_malloc(size_t size, const char *file, unsigned int line)
 }
 
 /* メモリの確保とそのアドレスのメモリ情報を記録から削除する関数 */
-void	leak_detect_free(void *ptr)
+void	leak_checker_free(void *ptr)
 {
 	size_t	i;
 
@@ -78,7 +78,7 @@ void	leak_detect_free(void *ptr)
 }
 
 /* 解放が行われていないメモリの情報を表示し、プログラムを終了する関数 */
-void	leak_detect_check(int n)
+void	leak_checker_check(int n)
 {
 	size_t	i;
 
