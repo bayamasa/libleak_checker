@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 11:54:44 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/16 12:35:55 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	*leak_detelc_malloc(size_t size, const char *file, unsigned int line)
 			g_mem_info[i].size = size;
 			g_mem_info[i].file = file;
 			g_mem_info[i].line = line;
+			break ;
 		}
 		i++;
 	}
