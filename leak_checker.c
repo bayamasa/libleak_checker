@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 12:35:55 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/16 12:49:57 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ void	leak_detect_check(int n)
 	{
 		if (g_mem_info[i].ptr != NULL)
 		{
-			printf("\x1b[33mメモリリークを検出!!!!!\x1b[39m\n");
+			printf("\x1b[33m==メモリリークを検出!!!!!==\x1b[39m\n");
 			printf(" アドレス:%p\n", g_mem_info[i].ptr);
 			printf(" サイズ:%zu\n", g_mem_info[i].size);
 			printf(" 場所:%s:%u\n", g_mem_info[i].file, g_mem_info[i].line);
-			printf("\n");
+			printf("\x1b[33m===========================\x1b[39m\n");
 		}
 		i++;
 	}
