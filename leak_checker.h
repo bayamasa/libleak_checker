@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:02 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 11:59:48 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/16 12:33:18 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 
 /* 管理数の上限 */
-# define MAX_NUM 500
+# define MAX_NUM 30
 
 /* メモリ管理構造体 */
 typedef struct s_mem
