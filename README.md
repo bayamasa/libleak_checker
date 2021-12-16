@@ -26,6 +26,10 @@ C言語のメモリリークを検出してくれるツールです。
 1. ヘッダーファイルをインクルード
 
 	検査したいプログラムにleak_checker.hとreplace_leak.hをインクルードします。
+	```
+	#include "libleak_checker/leak_checker.h"
+	#include "libleak_checker/replace_leak.h"
+	```
 1. leak_checker_init()を呼び出し
 
 	main関数の最初の行にleak_checker_init();を追記します。
