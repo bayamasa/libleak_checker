@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 20:34:20 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/23 17:09:48 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,25 @@ void	leak_checker_free(void *ptr)
 void	leak_checker_finish_check(int n)
 {
 	size_t	i;
+	bool	first_flag;
 
-	printf("\x1b[31m========メモリリークを検出!!!!========\x1b[39m\n");
+	first_flag = true;
 	i = 0;
 	while (i < MAX_NUM)
 	{
 		if (g_mem_info[i].ptr != NULL)
 		{
+			if (first_flag)
+				printf("\x1b[31m--------メモリリークを検出!!!!--------\x1b[39m\n");
 			printf(" アドレス : %p\n", g_mem_info[i].ptr);
 			printf(" サイズ   : %zuバイト\n", g_mem_info[i].size);
 			printf(" 場所     : %s:%u行目:%s関数\n", g_mem_info[i].file, g_mem_info[i].line, g_mem_info[i].func);
-			printf("\x1b[31m======================================\x1b[39m\n");
+			printf("\x1b[31m--------------------------------------\x1b[39m\n");
+			first_flag = false;
 		}
 		i++;
 	}
+	free_all();
 	exit(n);
 }
 
@@ -105,18 +110,35 @@ void	leak_checker_finish_check(int n)
 void	leak_checker_check(const char *file, unsigned int line, const char *func)
 {
 	size_t	i;
+	bool	first_flag;
 
-	printf("\x1b[33m==%s:%u行目:%s関数のヒープ領域==\x1b[39m\n", file, line, func);
+	first_flag = true;
 	i = 0;
 	while (i < MAX_NUM)
 	{
 		if (g_mem_info[i].ptr != NULL)
 		{
+			if (first_flag)
+				printf("\x1b[33m--%s:%u行目:%s関数のヒープ領域--\x1b[39m\n", file, line, func);
 			printf(" アドレス : %p\n", g_mem_info[i].ptr);
 			printf(" サイズ   : %zuバイト\n", g_mem_info[i].size);
 			printf(" 場所     : %s:%u行目:%s関数\n", g_mem_info[i].file, g_mem_info[i].line, g_mem_info[i].func);
-			printf("\x1b[33m======================================\x1b[39m\n");
+			printf("\x1b[33m--------------------------------------\x1b[39m\n");
+			first_flag = false;
 		}
+		i++;
+	}
+}
+
+void	free_all()
+{
+	size_t	i;
+
+	i = 0;
+	while (i < MAX_NUM)
+	{
+		if (g_mem_info[i].ptr != NULL)
+			leak_checker_free(g_mem_info[i].ptr);
 		i++;
 	}
 }

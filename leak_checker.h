@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:21:02 by tkirihar          #+#    #+#             */
-/*   Updated: 2021/12/16 17:05:17 by tkirihar         ###   ########.fr       */
+/*   Updated: 2021/12/23 04:02:39 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 /* 管理数の上限 */
 # define MAX_NUM 30
@@ -35,5 +36,6 @@ void	*leak_checker_malloc(size_t size, const char *file, unsigned int line, cons
 void	leak_checker_free(void *ptr);
 void	leak_checker_finish_check(int n);
 void	leak_checker_check(const char *file, unsigned int line, const char *func);
+void	free_all();
 
 #endif
