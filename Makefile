@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 
-NAME = 		libleek_checker.a
+NAME = 		libleak_checker.a
 
 SRCS = 		leak_checker.c
 
